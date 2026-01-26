@@ -537,95 +537,125 @@ body.dark-mode .bot-message { background: #2d2d2d; border-color: #444; color: #e
 body.dark-mode .chat-input-area { background: #1e1e1e; border-top-color: #333; }
 body.dark-mode #userInput { background: #2d2d2d; color: white; border-color: #444; }
 
-/* HERO SECTION - RESPONSIVE UPDATE */
+/* =========================================
+   HERO SECTION (修复版：靠上对齐 + 按钮适配)
+   ========================================= */
+
 .hero-section {
-    min-height: 100vh; /* Allows section to grow if text is long */
-    height: auto;      /* Prevents cutting off content */
-    display: flex;
-    align-items: center;
-    padding-top: 80px; /* Space for nav bar */
-    padding-bottom: 50px;
+    /* 1. 不再强制垂直居中，改为靠上对齐 */
+    min-height: auto;       /* 取消强制全屏高度 */
+    padding-top: 140px;     /* 顶部留出空间给导航栏 (根据导航栏高度调整) */
+    padding-bottom: 80px;   /* 底部留白 */
     background: #fff;
-    overflow-x: hidden; /* Stops horizontal scrolling */
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    overflow-x: hidden;
 }
 
 .hero-grid {
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* 2. 内容靠上对齐，消除顶部巨大空白 */
     justify-content: space-between;
-    gap: 50px;
+    gap: 40px;
     width: 100%;
-    max-width: 1200px; /* Prevents it from getting too wide on huge screens */
-    margin: 0 auto;    /* Centers the grid */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* 防止内容贴边 */
 }
 
 .hero-text {
-    flex: 1; /* Takes up 50% space */
+    flex: 1; 
     padding-right: 20px;
+    margin-top: 20px; /* 微调：让文字稍微下来一点点，不要太贴顶 */
 }
 
-/* SMART HEADLINE SIZE (Scales with screen) */
 .hero-text h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 5vw, 4.2rem); /* Dynamic resizing */
-    line-height: 1.1;
+    /* 智能字体大小：电脑上大，手机上自动变小 */
+    font-size: clamp(2.2rem, 4vw, 3.8rem); 
+    line-height: 1.15;
     color: #111827;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .hero-bio {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     line-height: 1.6;
     color: #4b5563;
-    margin-bottom: 30px;
-    max-width: 600px; /* Keeps lines easy to read */
+    margin-bottom: 25px;
+    max-width: 650px;
 }
 
-/* BUTTONS */
+/* --- 3. 按钮修复 (适配长文字) --- */
 .hero-buttons {
     display: flex;
-    gap: 15px;
-    flex-wrap: wrap; /* Allows buttons to stack if screen is tiny */
-    margin-top: 20px;
+    align-items: center; /* 垂直居中对齐按钮 */
+    gap: 15px; /* 按钮之间的间距 */
+    flex-wrap: wrap; /* 如果屏幕太小，允许换行 */
+    margin-top: 25px;
 }
 
-/* IMAGE */
+.btn-primary, .btn-text {
+    /* 关键修改：字体改小，让长文字能排成一行 */
+    font-size: 0.9rem !important; 
+    padding: 12px 24px;
+    border-radius: 50px;
+    white-space: nowrap; /* 强制不换行 (除非屏幕实在太小) */
+}
+
+/* 针对第二个链接式按钮的微调 */
+.btn-text {
+    padding-left: 10px; /* 稍微紧凑一点 */
+}
+
+/* 图片区域 */
 .hero-image-wrapper {
-    flex: 0.8; /* Image takes slightly less space than text */
+    flex: 0.9;
     display: flex;
     justify-content: center;
+    align-items: flex-start; /* 图片也靠上对齐 */
 }
 
 .hero-img {
     width: 100%;
-    max-width: 450px;
+    max-width: 420px; /*稍微把图片限制小一点，更精致*/
     border-radius: 20px;
-    box-shadow: 20px 20px 0px #eff6ff; /* The cool offset border */
+    box-shadow: 20px 20px 0px #eff6ff;
     object-fit: cover;
 }
 
-/* 📱 MOBILE VIEW (The Magic Fix) */
+/* 📱 手机端适配 (Mobile) */
 @media (max-width: 968px) {
+    .hero-section {
+        padding-top: 100px; /* 手机上顶部留白少一点 */
+    }
+
     .hero-grid {
-        flex-direction: column-reverse; /* Stacks image on TOP of text, or use 'column' for Text on Top */
+        flex-direction: column-reverse; /* 图片在上面，文字在下面 (或者 column 文字在上) */
         text-align: center;
         gap: 30px;
     }
 
     .hero-text {
         padding-right: 0;
-    }
-
-    .hero-bio {
-        margin-left: auto;
-        margin-right: auto; /* Centers text block */
+        margin-top: 0;
     }
 
     .hero-buttons {
-        justify-content: center; /* Centers buttons */
+        justify-content: center; /* 按钮居中 */
+    }
+
+    /* 手机上允许按钮文字换行，防止撑破屏幕 */
+    .btn-primary, .btn-text {
+        white-space: normal; 
+        font-size: 0.95rem !important;
+        width: 100%; /* 手机上按钮占满宽度，更容易点击 */
+        text-align: center;
     }
     
-    .hero-image-wrapper {
-        width: 80%; /* Makes image smaller on phone */
+    .btn-text {
+        margin-top: -10px; /* 拉近两个按钮的距离 */
     }
-}
+
+    .hero-image-wrapper {
+        width:
