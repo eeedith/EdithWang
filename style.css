@@ -683,3 +683,87 @@ body.dark-mode #userInput { background: #2d2d2d; color: white; border-color: #44
         display: flex;
     }
 }
+
+/* =========================================
+   EXECUTIVE SNAPSHOT SECTION
+   ========================================= */
+
+.executive-snapshot {
+    padding: 80px 20px; /* 上下留出足够的呼吸空间 */
+    background-color: #fff; /* 保持背景纯白，突出卡片的轮廓 */
+}
+
+/* 标题样式：极简、居中 */
+.snapshot-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #111827;
+    margin-bottom: 50px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+/* 布局网格：电脑上三列，手机上一列 */
+.snapshot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 强制三等分 */
+    gap: 30px; /* 卡片之间的间距 */
+    max-width: 1100px; /* 限制最大宽度，防止读起来太累 */
+    margin: 0 auto;
+}
+
+/* 卡片样式：Off-white, Subtle Border, No Shadow */
+.snapshot-card {
+    background-color: #f9fafb; /* 极淡的灰白色 (Off-white) */
+    border: 1px solid #e5e7eb; /* 极细的灰色边框 */
+    border-radius: 12px;       /* 柔和的圆角 */
+    padding: 35px 30px;        /* 充足的内边距 */
+    transition: all 0.3s ease;
+}
+
+/* 鼠标悬停时稍微加深一点边框 (可选的微交互) */
+.snapshot-card:hover {
+    border-color: #d1d5db;
+}
+
+/* 卡片标题 */
+.snapshot-card h3 {
+    font-family: 'Inter', sans-serif; /* 使用无衬线字体显得更现代 */
+    font-size: 1.1rem;
+    font-weight: 600; /* Semibold */
+    color: #111827;   /* 深黑色 */
+    margin-bottom: 15px;
+    letter-spacing: -0.01em;
+}
+
+/* 卡片正文 */
+.snapshot-card p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6; /* 增加行高，提升阅读体验 */
+    color: #4b5563;   /* 中灰色 */
+    margin: 0;
+}
+
+/* 底部微型文字 (Micro-line) */
+.snapshot-footer {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 0.85rem;
+    color: #9ca3af; /* 浅灰色 (Muted) */
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+/* 📱 手机端适配 */
+@media (max-width: 768px) {
+    .snapshot-grid {
+        grid-template-columns: 1fr; /* 手机上变为单列堆叠 */
+        gap: 20px;
+    }
+    
+    .executive-snapshot {
+        padding: 60px 20px;
+    }
+}
