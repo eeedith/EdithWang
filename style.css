@@ -425,3 +425,71 @@ body.dark-mode .status-label { color: #d1d5db; }
 /* Dark Mode - Footer & Trust Text */
 body.dark-mode .trust-text,
 body.dark-mode .snapshot-footer { color: #9ca3af !important; }
+
+/* --- Insights Grid Section --- */
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Creates the 3 columns */
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.insight-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Hover Effect */
+.insight-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-color: var(--text-accent);
+}
+
+.insight-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-accent);
+}
+
+.insight-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.insight-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.read-link {
+    font-weight: 600;
+    color: var(--text-accent);
+    text-decoration: none;
+    margin-top: auto; /* Pushes link to bottom */
+}
+
+.read-link:hover {
+    text-decoration: underline;
+}
+
+/* Dark Mode Support for Cards */
+body.dark-mode .insight-card {
+    background: #1e293b;
+    border-color: #334155;
+}
+body.dark-mode .insight-card h3 {
+    color: #f1f5f9;
+}
+body.dark-mode .insight-card p {
+    color: #94a3b8;
+}
