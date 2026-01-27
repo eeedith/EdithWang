@@ -40,19 +40,102 @@ nav { background: rgba(255,255,255,0.95); position: sticky; top: 0; z-index: 100
 .nav-links a { text-decoration: none; color: var(--text-muted); margin-left: 20px; font-size: 0.9rem; font-weight: 500; }
 .btn-nav { background: var(--text-main); color: white; border: none; padding: 8px 16px; border-radius: 20px; margin-left: 20px; cursor: pointer; font-size: 0.85rem; }
 
-/* Hero */
-.hero-section { padding: 40px 0 60px 0; display: flex; align-items: center; }
-.hero-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 50px; align-items: center; }
+/* =========================================
+   HERO SECTION (Compact & Dynamic)
+   ========================================= */
+.hero-section {
+    height: 100vh;          /* Full Viewport Height */
+    min-height: 600px;      
+    display: flex;
+    align-items: center;    
+    padding-top: 60px;      
+    background: #fff;
+    overflow: hidden;       
+}
+
+.hero-grid {
+    display: flex;
+    align-items: center;    
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;        
+}
+
+/* Left Text Area */
+.hero-text {
+    flex: 1.3;              
+    padding-right: 20px;
+}
+
+.hero-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3.5rem); 
+    line-height: 1.1;
+    color: #111827;
+    margin-bottom: 20px;
+}
+
 .status-pill { background: #EFF6FF; color: var(--text-accent); display: inline-block; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 20px; }
 .dot { width: 8px; height: 8px; background: var(--text-accent); border-radius: 50%; display: inline-block; margin-right: 5px; }
-h1 { font-family: var(--font-heading); font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; }
 .accent-text { color: var(--text-accent); }
-.hero-bio { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; max-width: 500px; }
-.hero-buttons { display: flex; gap: 15px; align-items: center; }
-.btn-primary { background: var(--text-accent); color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 600; transition: background 0.2s; }
+
+.hero-bio {
+    font-size: 1rem;       
+    line-height: 1.6;
+    color: #4b5563;
+    margin-bottom: 25px;
+    max-width: 600px;
+}
+
+/* Buttons */
+.hero-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;             
+    flex-wrap: nowrap;     
+    width: 100%;
+}
+
+.btn-primary {
+    background: var(--text-accent);
+    color: white;
+    font-size: 0.85rem !important; 
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    white-space: nowrap;   
+    transition: background 0.3s;
+}
 .btn-primary:hover { background: #1D4ED8; }
-.btn-text { text-decoration: none; color: var(--text-main); font-weight: 600; }
-.hero-image-wrapper img { width: 100%; max-width: 400px; border-radius: 12px; box-shadow: 20px 20px 0 #E5E7EB; }
+
+.btn-text {
+    color: var(--text-main);
+    font-size: 0.85rem !important;
+    text-decoration: none;
+    font-weight: 600;
+    white-space: nowrap;   
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.3s;
+}
+.btn-text:hover { border-bottom: 1px solid #111827; }
+
+/* Right Image Area */
+.hero-image-wrapper {
+    flex: 0.7;             
+    display: flex;
+    justify-content: flex-end; 
+}
+
+.hero-img {
+    width: 100%;
+    max-width: 380px;      
+    border-radius: 16px;
+    box-shadow: 15px 15px 0px #eff6ff;
+    object-fit: cover;
+}
 
 /* Cert Bar */
 .cert-bar { background: #111827; padding: 20px 0; color: white; }
@@ -74,16 +157,57 @@ h1 { font-family: var(--font-heading); font-size: 3.5rem; line-height: 1.1; marg
 .focus-highlights li { margin-bottom: 8px; font-size: 0.95rem; }
 .icon-huge { font-size: 5rem; color: #93C5FD; }
 
-/* Applied Projects*/
-.applied_projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-.applied_projects-card { background: white; border: 1px solid #E5E7EB; padding: 30px; border-radius: 12px; transition: transform 0.2s; }
-.applied_projects-card:hover { transform: translateY(-5px); border-color: var(--text-main); }
+/* =========================================
+   APPLIED PROJECTS (Formerly Consulting)
+   Fixed to 3 Columns
+   ========================================= */
+
+.applied_projects-grid { 
+    display: grid; 
+    /* FORCE 3 COLUMNS HERE */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 25px; 
+    margin-top: 40px;
+}
+
+.applied_projects-card { 
+    background: white; 
+    border: 1px solid #E5E7EB; 
+    padding: 30px; 
+    border-radius: 12px; 
+    transition: all 0.3s ease-in-out; 
+    overflow: hidden; 
+}
+
+.applied_projects-card:hover { 
+    transform: translateY(-5px); 
+    border-color: var(--text-main); 
+    background-color: #fafafa; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08); 
+}
+
 .card-top { display: flex; justify-content: space-between; margin-bottom: 15px; }
 .icon-red { font-size: 2rem; color: #DC2626; }
 .icon-blue { font-size: 2rem; color: #2563EB; }
 .role-badge { font-size: 0.75rem; background: #F3F4F6; padding: 4px 8px; border-radius: 4px; font-weight: 600; color: var(--text-muted); }
 .subtitle { font-weight: 600; color: var(--text-main); margin-bottom: 10px; }
-.details { font-size: 0.9rem; color: var(--text-muted); }
+
+/* Hover Reveal Details */
+.applied_projects-card .details {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-top: 0;
+    font-size: 0.9rem; 
+    color: var(--text-muted); 
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+
+.applied_projects-card:hover .details {
+    max-height: 300px;
+    opacity: 1;
+    margin-top: 15px;
+}
 
 /* Timeline (Rich) */
 .timeline-wrapper { max-width: 850px; margin: 0 auto; }
@@ -100,15 +224,6 @@ h1 { font-family: var(--font-heading); font-size: 3.5rem; line-height: 1.1; marg
 .timeline-content h4 { font-size: 1.1rem; margin-bottom: 5px; }
 .company { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px; font-style: italic; }
 
-/* Insights Grid */
-.insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-.insight-card { background: var(--bg-body); border: 1px solid #E5E7EB; border-radius: 8px; padding: 30px; text-decoration: none; color: inherit; transition: transform 0.2s; }
-.insight-card:hover { transform: translateY(-5px); border-color: var(--text-accent); }
-.card-icon { font-size: 1.5rem; color: var(--text-accent); margin-bottom: 15px; }
-.insight-card h5 { font-size: 1.1rem; margin-bottom: 10px; color: var(--text-main); }
-.insight-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; }
-.read-link { font-size: 0.85rem; font-weight: 600; color: var(--text-accent); }
-
 /* Connect Buttons */
 .connect-title { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 15px; }
 .connect-text { color: #9CA3AF; max-width: 600px; margin: 0 auto 40px; font-size: 1.1rem; }
@@ -124,1057 +239,189 @@ footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-siz
 /* AI CHATBOT */
 .floating-ai {
     position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
-    background: var(--text-main); color: white; border-radius: 50%;
-    display: flex; justify-content: center; align-items: center; font-size: 1.5rem;
-    cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: transform 0.2s; z-index: 9999;
+    background: #2563eb; color: white; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center; font-size: 24px;
+    cursor: pointer; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4); transition: transform 0.3s ease; z-index: 9999;
 }
-.floating-ai:hover { transform: scale(1.1); background: var(--text-accent); }
-.tooltip { position: absolute; right: 70px; background: white; color: var(--text-main); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; opacity: 0; transition: opacity 0.3s; pointer-events: none; white-space: nowrap; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-.floating-ai:hover .tooltip { opacity: 1; }
+.floating-ai:hover { transform: scale(1.1); }
+.tooltip { display: none; }
 
 .chat-window {
-    display: none; position: fixed; bottom: 100px; right: 30px; width: 350px; height: 450px;
-    background: white; border-radius: 12px; box-shadow: 0 5px 30px rgba(0,0,0,0.2);
-    z-index: 9998; flex-direction: column; border: 1px solid #eee; overflow: hidden;
+    position: fixed; bottom: 100px; right: 30px; width: 340px; height: 480px;
+    background: white; border-radius: 16px; box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+    display: flex; flex-direction: column; overflow: hidden; z-index: 9999;
+    transform: scale(0); transform-origin: bottom right; transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    opacity: 0; pointer-events: none;
 }
-.chat-window.open { display: flex; }
-.chat-header { background: var(--text-main); color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
-.close-chat { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
-.chat-body { flex: 1; padding: 15px; overflow-y: auto; background: #f9f9f9; display: flex; flex-direction: column; gap: 10px; }
-.message { max-width: 80%; padding: 10px 15px; border-radius: 12px; font-size: 0.9rem; line-height: 1.4; }
-.bot-message { background: #E5E7EB; color: black; align-self: flex-start; border-bottom-left-radius: 2px; }
-.user-message { background: var(--text-accent); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
-.chat-input-area { padding: 15px; border-top: 1px solid #eee; background: white; }
-.quick-replies { display: flex; gap: 10px; flex-wrap: wrap; }
-.quick-replies button { background: white; border: 1px solid var(--text-accent); color: var(--text-accent); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; }
-.quick-replies button:hover { background: var(--text-accent); color: white; }
+.chat-window.active { transform: scale(1); opacity: 1; pointer-events: all; }
+
+.chat-header { background: linear-gradient(135deg, #2563eb, #1d4ed8); padding: 15px; color: white; display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
+.chat-close { background: none; border: none; color: white; font-size: 20px; cursor: pointer; }
+.chat-body { flex: 1; padding: 15px; overflow-y: auto; background: #f8f9fa; display: flex; flex-direction: column; gap: 10px; }
+.message { max-width: 80%; padding: 10px 14px; border-radius: 12px; font-size: 0.9rem; line-height: 1.4; }
+.bot-message { background: white; border: 1px solid #e5e7eb; color: #333; align-self: flex-start; border-bottom-left-radius: 2px; }
+.user-message { background: #2563eb; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+.chat-input-area { padding: 10px; background: white; border-top: 1px solid #eee; }
+.quick-replies { display: flex; gap: 8px; margin-bottom: 10px; overflow-x: auto; padding-bottom: 2px; }
+.quick-replies button { background: #eff6ff; border: 1px solid #bfdbfe; color: #1d4ed8; padding: 6px 12px; border-radius: 15px; font-size: 11px; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
+.quick-replies button:hover { background: #2563eb; color: white; }
 
 /* Reveal Animation */
 .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
-/* Mobile */
-@media (max-width: 768px) {
-    .hero-grid, .applied_projects-grid, .focus-card, .timeline-row { grid-template-columns: 1fr; }
-    .hero-image-wrapper { order: -1; margin-bottom: 20px; }
-    .focus-visual { display: none; }
-    .timeline-time { text-align: left; border-right: none; border-left: 2px solid #eee; padding-left: 20px; }
-    .chat-window { width: 90%; right: 5%; }
-}
-/* --- Proven Impact Section (Updated for 4 items) --- */
+/* Proven Impact Section */
 .impact-grid {
     display: grid;
-    /* 改为自适应布局：一行放不下会自动换行，通常一行显示4个，平板显示2个 */
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
     gap: 40px;
     text-align: center;
     border-top: 1px solid #E5E7EB;
     padding-top: 60px;
 }
+.impact-item { padding: 10px; cursor: default; position: relative; }
+.impact-number { font-family: var(--font-heading); font-size: 3.5rem; color: var(--text-accent); line-height: 1; margin-bottom: 15px; }
+.impact-label { font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin-bottom: 10px; }
+.impact-details { font-size: 0.95rem; color: var(--text-muted); opacity: 0; transform: translateY(10px); transition: all 0.3s ease-in-out; max-width: 250px; margin: 0 auto; }
+.impact-item:hover .impact-details { opacity: 1; transform: translateY(0); }
+.impact-item:hover .impact-number { transform: translateY(-5px); transition: transform 0.3s ease; }
 
-.impact-item {
-    padding: 10px;
-    cursor: default;
-    position: relative;
+/* View All Insights Button */
+.view-all-wrapper { margin-top: 50px; text-align: center; }
+.btn-outline { display: inline-block; border: 2px solid var(--text-main); color: var(--text-main); padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.2s ease; }
+.btn-outline:hover { background: var(--text-main); color: white; transform: translateY(-2px); }
+
+/* EXECUTIVE SNAPSHOT SECTION */
+.executive-snapshot { padding: 80px 20px; background-color: #fff; }
+.snapshot-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #111827; margin-bottom: 80px; font-weight: 600; letter-spacing: -0.5px; }
+.snapshot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1100px; margin: 0 auto; }
+.snapshot-card { background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px; padding: 35px 30px; transition: all 0.3s ease; }
+.snapshot-card:hover { border-color: #d1d5db; }
+.snapshot-card h3 { font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 600; color: #111827; margin-bottom: 15px; letter-spacing: -0.01em; }
+.snapshot-card p { font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.6; color: #4b5563; margin: 0; }
+.snapshot-footer { text-align: center; margin-top: 50px; font-size: 0.85rem; color: #9ca3af; font-weight: 500; letter-spacing: 0.02em; }
+
+/* VENTURE SUMMARY */
+.venture-summary { min-height: 90vh; display: flex; align-items: center; padding: 40px 20px; background-color: #f3f4f6; }
+.venture-card { max-width: 900px; width: 100%; margin: 0 auto; background: #ffffff; padding: 40px 50px; border-radius: 20px; box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08); border: 1px solid rgba(255, 255, 255, 0.5); position: relative; overflow: hidden; }
+.venture-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(90deg, #2563eb, #60a5fa); }
+.award-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+.award-pill { background: #eff6ff; color: #2563eb; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; padding: 5px 10px; border-radius: 50px; border: 1px solid #dbeafe; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 2.5vw, 2.4rem); color: #111827; margin-bottom: 20px; line-height: 1.1; }
+.summary-body p { font-size: 1rem; line-height: 1.6; color: #4b5563; margin-bottom: 15px; max-width: 750px; }
+.lead-text { color: #111827 !important; font-weight: 500; }
+.feature-grid { margin: 25px 0; display: flex; flex-direction: column; gap: 10px; }
+.feature-item { display: flex; align-items: center; gap: 12px; background: #f9fafb; padding: 10px 18px; border-radius: 10px; border: 1px solid #f3f4f6; transition: all 0.2s; }
+.feature-item:hover { border-color: #e5e7eb; background: #fff; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+.check-icon { width: 20px; height: 20px; background: #dbeafe; color: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0; }
+.feature-item span { font-weight: 500; color: #374151; font-size: 0.95rem; }
+.venture-status { font-size: 0.85rem; color: #6b7280; margin-top: -10px; margin-bottom: 20px; font-family: 'Inter', sans-serif; }
+.status-label { font-weight: 700; color: #374151; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.5px; margin-right: 6px; }
+.divider { border: 0; height: 1px; background: #e5e7eb; margin: 25px 0; }
+.summary-actions { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+.platform-group { display: flex; align-items: center; gap: 8px; }
+.link-brand { color: #2563eb; font-weight: 700; text-decoration: none; font-size: 1rem; }
+.btn-strategy { padding: 10px 24px; background-color: #111827; color: #fff; text-decoration: none; border-radius: 50px; font-weight: 500; font-size: 0.9rem; transition: all 0.2s; }
+.btn-strategy:hover { background-color: #374151; transform: translateY(-1px); }
+.summary-footer { margin-top: 20px; font-size: 0.8rem; color: #9ca3af; text-align: center; }
+
+/* Laptop Mode Fix */
+@media (max-height: 800px) {
+    .venture-summary { padding: 20px 10px; }
+    .venture-card { padding: 25px 35px; }
+    .section-title { font-size: 1.8rem; margin-bottom: 12px; }
+    .summary-body p { font-size: 0.95rem; margin-bottom: 10px; line-height: 1.5; }
+    .feature-grid, .divider { margin: 15px 0; }
+    .feature-item { padding: 8px 15px; }
+    .summary-footer { display: none; }
 }
 
-.impact-number {
-    font-family: var(--font-heading);
-    font-size: 3.5rem; /* 大字体 */
-    color: var(--text-accent);
-    line-height: 1;
-    margin-bottom: 15px;
+/* Mobile Adjustments */
+@media (max-width: 968px) {
+    .hero-section { height: auto; padding-top: 100px; padding-bottom: 50px; }
+    .hero-grid { flex-direction: column-reverse; text-align: center; gap: 30px; }
+    .hero-text { flex: 1; padding-right: 0; }
+    .hero-image-wrapper { justify-content: center; flex: 1; }
+    .hero-img { max-width: 300px; }
+    .hero-buttons { justify-content: center; flex-wrap: wrap; gap: 10px; }
+    .btn-primary, .btn-text { width: 100%; justify-content: center; display: flex; }
+    .applied_projects-grid { grid-template-columns: 1fr; }
 }
 
-.impact-label {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 10px;
-}
-
-/* 悬停显示细节 - 保持不变 */
-.impact-details {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.3s ease-in-out;
-    max-width: 240px;
-    margin: 0 auto;
-    line-height: 1.4;
-}
-
-.impact-item:hover .impact-details {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.impact-item:hover .impact-number {
-    transform: translateY(-5px);
-    transition: transform 0.3s ease;
-}
-
-/* 手机适配 */
 @media (max-width: 768px) {
-    .impact-grid {
-        grid-template-columns: 1fr; /* 手机上一列 */
-        gap: 50px;
-    }
-    .impact-details {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* 悬停效果逻辑 */
-.impact-details {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    opacity: 0;             /* 默认隐藏 */
-    transform: translateY(10px);
-    transition: all 0.3s ease-in-out;
-    max-width: 250px;       /* 限制文字宽度，阅读体验更好 */
-    margin: 0 auto;
-}
-
-/* 鼠标放上去时显示细节 */
-.impact-item:hover .impact-details {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* 鼠标放上去时数字稍微上浮一点点 */
-.impact-item:hover .impact-number {
-    transform: translateY(-5px);
-    transition: transform 0.3s ease;
-}
-
-/* 手机端适配：变成单列 */
-@media (max-width: 768px) {
-    .impact-grid {
-        grid-template-columns: 1fr;
-        gap: 60px;
-    }
-    /* 手机上默认显示细节，因为没有鼠标悬停 */
-    .impact-details {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* --- View All Insights Button --- */
-.view-all-wrapper {
-    margin-top: 50px;
-    text-align: center;
-}
-
-.btn-outline {
-    display: inline-block;
-    border: 2px solid var(--text-main);
-    color: var(--text-main);
-    padding: 12px 30px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.2s ease;
-}
-
-.btn-outline:hover {
-    background: var(--text-main);
-    color: white;
-    transform: translateY(-2px);
-}
-
-/* --- Force 3 Cards in One Row --- */
-.applied_projects-grid {
-    display: grid;
-    /* 核心代码：强制分成三列，每列占 1 份宽度 */
-    grid-template-columns: 1fr 1fr 1fr; 
-    gap: 25px; /* 卡片之间的间距 */
-    margin-top: 40px;
-}
-
-/* 手机端适配：如果不加这个，手机上看会挤成一团，所以手机上还是让它变竖排 */
-@media (max-width: 900px) {
-    .applied_projects-grid {
-        grid-template-columns: 1fr; /* 手机上改回一列 */
-    }
-}
-
-
-/* --- applied_projects Card Hover Reveal Effect --- */
-
-/* 1. 让卡片本身的高度变化更丝滑 */
-.applied_projects-card {
-    transition: all 0.3s ease-in-out;
-    /* 确保卡片内容不会溢出边界 */
-    overflow: hidden; 
-}
-
-/* 2. 默认状态下，隐藏详情文字 */
-.applied_projects-card .details {
-    max-height: 0;      /* 高度压扁为 0 */
-    opacity: 0;         /* 透明度为 0 (完全看不见) */
-    overflow: hidden;   /* 隐藏超出的内容 */
-    margin-top: 0;      /* 去掉上边距，彻底不占空间 */
-    /* 添加过渡动画，让展开过程很顺滑 */
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
-}
-
-/* 3. 鼠标悬停状态下 (Hover)，展示详情文字 */
-.applied_projects-card:hover .details {
-    max-height: 300px;  /* 设置一个足够大的最大高度，让文字能完全显示 */
-    opacity: 1;         /* 变回不透明 */
-    margin-top: 15px;   /* 恢复上边距，让文字和标题有点距离 */
-}
-
-/* (可选) 鼠标放上去时，让卡片的背景色稍微变一点点，增加交互感 */
-.applied_projects-card:hover {
-    background-color: #fafafa; 
-    box-shadow: 0 10px 20px rgba(0,0,0,0.08); /* 阴影加深一点，更有浮起来的感觉 */
-}
-
-
-/* --- Dark Mode Styles --- */
-body.dark-mode {
-    background-color: #121212;
-    color: #e0e0e0;
-}
-body.dark-mode nav {
-    background-color: #121212;
-    box-shadow: 0 2px 10px rgba(255,255,255,0.05);
-}
-body.dark-mode .nav-item {
-    color: #e0e0e0;
-}
-body.dark-mode .nav-item:hover {
-    color: #64ffda;
-}
-body.dark-mode .applied_projects-card {
-    background-color: #1e1e1e;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-}
-body.dark-mode .applied_projects-card h4 {
-    color: #ffffff;
-}
-body.dark-mode .applied_projects-card .subtitle {
-    color: #a0a0a0;
-}
-body.dark-mode .applied_projects-card .details {
-    color: #cccccc;
-}
-/* 强制覆盖浅色背景 */
-body.dark-mode .bg-light {
-    background-color: #181818 !important;
-}
-
-/* --- Dark Mode Fix for Focus/Venture Section --- */
-
-/* 1. 将那个大卡片的背景变深 */
-body.dark-mode .focus-card {
-    background-color: #1e1e1e !important;  /* 深灰色背景 */
-    border: 1px solid #333;               /* 微弱边框 */
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5); /* 加深阴影 */
-}
-
-/* 2. 让卡片里的标题和文字变亮 */
-body.dark-mode .focus-card h4,
-body.dark-mode .focus-card p,
-body.dark-mode .focus-card li {
-    color: #e0e0e0 !important; /* 亮灰色文字 */
-}
-
-/* 3. 让 "The Challenge" 这种加粗字变白 */
-body.dark-mode .focus-card strong {
-    color: #ffffff !important;
-}
-
-/* 4. 如果那是浅蓝色背景的 tag (Founder & Product Lead)，保持文字清晰 */
-body.dark-mode .project-tag-large {
-    border: 1px solid #64ffda; /* 加个高亮边框让它在黑夜里更明显 */
+    .hero-grid, .focus-card, .timeline-row { grid-template-columns: 1fr; }
+    .focus-visual { display: none; }
+    .timeline-time { text-align: left; border-right: none; border-left: 2px solid #eee; padding-left: 20px; }
+    .chat-window { width: 90%; right: 5%; }
+    .impact-grid { grid-template-columns: 1fr; gap: 50px; }
+    .impact-details { opacity: 1; transform: translateY(0); }
+    .venture-card { padding: 30px 20px; }
+    .summary-actions { flex-direction: column; align-items: flex-start; }
+    .btn-strategy { width: 100%; text-align: center; }
+    .snapshot-grid { grid-template-columns: 1fr; gap: 20px; }
+    .executive-snapshot { padding: 60px 20px; }
 }
 
 /* =========================================
-   🔧 强制修复：Chatbot 样式 (对齐 index.html)
+   DARK MODE (COMPLETE)
    ========================================= */
+body.dark-mode { background-color: #111827; color: #f3f4f6; }
+body.dark-mode nav { background-color: #111827; box-shadow: 0 2px 10px rgba(255,255,255,0.05); }
+body.dark-mode .nav-item { color: #e0e0e0; }
+body.dark-mode .nav-item:hover { color: #64ffda; }
+body.dark-mode .bg-light { background-color: #181818 !important; }
 
-/* 1. 悬浮按钮 (名字必须是 .floating-ai) */
-.floating-ai {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    background: #2563eb; /* 蓝色 */
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
-    transition: transform 0.3s ease;
-    z-index: 9999; /* 保证在最上层 */
-}
-
-.floating-ai:hover {
-    transform: scale(1.1);
-}
-
-.tooltip {
-    display: none; /* 简化：暂时隐藏 tooltip 避免干扰 */
-}
-
-/* 2. 聊天窗口 (名字必须是 .chat-window) */
-.chat-window {
-    position: fixed;
-    bottom: 100px;
-    right: 30px;
-    width: 340px;
-    height: 480px;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 5px 30px rgba(0,0,0,0.2);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    z-index: 9999;
-    
-    /* 核心动画逻辑 */
-    transform: scale(0); /* 默认缩小隐藏 */
-    transform-origin: bottom right; /* 从右下角弹出 */
-    transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-    opacity: 0;
-    pointer-events: none; /* 隐藏时不可点击 */
-}
-
-/* 3. 激活状态 (JS 切换这个类来显示窗口) */
-.chat-window.active {
-    transform: scale(1); /* 放大显示 */
-    opacity: 1;
-    pointer-events: all;
-}
-
-/* --- 窗口内部样式 --- */
-.chat-header {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    padding: 15px;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 600;
-}
-
-.chat-close {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.chat-body {
-    flex: 1;
-    padding: 15px;
-    overflow-y: auto;
-    background: #f8f9fa;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* 消息气泡 */
-.message {
-    max-width: 80%;
-    padding: 10px 14px;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    line-height: 1.4;
-}
-.bot-message {
-    background: white;
-    border: 1px solid #e5e7eb;
-    color: #333;
-    align-self: flex-start;
-    border-bottom-left-radius: 2px;
-}
-.user-message {
-    background: #2563eb;
-    color: white;
-    align-self: flex-end;
-    border-bottom-right-radius: 2px;
-}
-
-/* 底部输入区 */
-.chat-input-area {
-    padding: 10px;
-    background: white;
-    border-top: 1px solid #eee;
-}
-
-.quick-replies {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 10px;
-    overflow-x: auto;
-    padding-bottom: 2px;
-}
-
-.quick-replies button {
-    background: #eff6ff;
-    border: 1px solid #bfdbfe;
-    color: #1d4ed8;
-    padding: 6px 12px;
-    border-radius: 15px;
-    font-size: 11px;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background 0.2s;
-}
-
-.quick-replies button:hover {
-    background: #2563eb;
-    color: white;
-}
-
-/* Dark Mode 适配 */
+/* Dark Mode - Chatbot */
 body.dark-mode .chat-window { background: #1e1e1e; border: 1px solid #444; }
 body.dark-mode .chat-body { background: #121212; }
 body.dark-mode .bot-message { background: #2d2d2d; border-color: #444; color: #e0e0e0; }
 body.dark-mode .chat-input-area { background: #1e1e1e; border-top-color: #333; }
-body.dark-mode #userInput { background: #2d2d2d; color: white; border-color: #444; }
 
-/* =========================================
-   HERO SECTION (紧凑版：一屏显示 + 按钮并排)
-   ========================================= */
-
-.hero-section {
-    /* 1. 高度设置：让它刚好占满一屏，不要太高 */
-    height: 100vh;          /* 强制高度为视窗高度 */
-    min-height: 600px;      /* 防止在极矮的屏幕上重叠 */
-    display: flex;
-    align-items: center;    /* 垂直居中：解决顶部空白过大问题 */
-    padding-top: 60px;      /* 稍微留一点顶距给导航栏即可 (之前是140px) */
-    background: #fff;
-    overflow: hidden;       /* 防止滚动条 */
-}
-
-.hero-grid {
-    display: flex;
-    align-items: center;    /* 内容垂直居中 */
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 30px;        /* 左右留一点边距 */
-}
-
-/* --- 左侧文字区域 (调宽，给按钮腾空间) --- */
-.hero-text {
-    flex: 1.3;             /* 关键：把文字区域权重由 1 加到 1.3 */
-    padding-right: 20px;
-}
-
-.hero-text h1 {
-    font-family: 'Playfair Display', serif;
-    /* 字体稍微调小一点点，保证在笔记本上不换行太多 */
-    font-size: clamp(2rem, 3.5vw, 3.5rem); 
-    line-height: 1.1;
-    color: #111827;
-    margin-bottom: 20px;
-}
-
-.hero-bio {
-    font-size: 1rem;       /* 正文字体微调 */
-    line-height: 1.6;
-    color: #4b5563;
-    margin-bottom: 25px;
-    max-width: 600px;
-}
-
-.hero-meta {
-    font-size: 0.9rem;
-    color: #6b7280;
-    margin-bottom: 25px;
-}
-
-/* --- 2. 按钮区域 (强制不换行) --- */
-.hero-buttons {
-    display: flex;
-    align-items: center;
-    gap: 15px;             /* 按钮之间的间距 */
-    flex-wrap: nowrap;     /* 核心：禁止电脑端换行 */
-    width: 100%;
-}
-
-.btn-primary {
-    background-color: #2563eb;
-    color: white;
-    /* 核心：字体改小，内边距改小，确保能塞进一行 */
-    font-size: 0.85rem !important; 
-    padding: 10px 20px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    white-space: nowrap;   /* 强制文字不换行 */
-    transition: background 0.3s;
-}
-
-.btn-text {
-    color: #111827;
-    /* 核心：字体改小 */
-    font-size: 0.85rem !important;
-    text-decoration: none;
-    font-weight: 600;
-    white-space: nowrap;   /* 强制文字不换行 */
-    border-bottom: 1px solid transparent;
-    transition: border-bottom 0.3s;
-}
-
-.btn-text:hover {
-    border-bottom: 1px solid #111827;
-}
-
-/* --- 右侧图片区域 (调小) --- */
-.hero-image-wrapper {
-    flex: 0.7;             /* 关键：把图片区域权重由 1 降到 0.7 */
-    display: flex;
-    justify-content: flex-end; /* 图片靠右 */
-}
-
-.hero-img {
-    width: 100%;
-    max-width: 380px;      /* 图片最大宽度调小 (之前是450px) */
-    border-radius: 16px;
-    box-shadow: 15px 15px 0px #eff6ff;
-    object-fit: cover;
-}
-
-/* --- 📱 手机端适配 (保持原来的堆叠逻辑) --- */
-@media (max-width: 968px) {
-    .hero-section {
-        height: auto;      /* 手机上自动高度，允许滚动 */
-        padding-top: 100px;
-        padding-bottom: 50px;
-    }
-
-    .hero-grid {
-        flex-direction: column-reverse; /* 图片在上，文字在下 */
-        text-align: center;
-        gap: 30px;
-    }
-
-    .hero-text {
-        flex: 1;
-        padding-right: 0;
-    }
-
-    .hero-image-wrapper {
-        justify-content: center;
-        flex: 1;
-    }
-    
-    .hero-img {
-        max-width: 300px; /* 手机上图片再小一点 */
-    }
-
-    .hero-buttons {
-        justify-content: center;
-        flex-wrap: wrap;   /* 手机上允许换行，不然按钮太小按不到 */
-        gap: 10px;
-    }
-    
-    .btn-primary, .btn-text {
-        width: 100%;       /* 手机上按钮撑满 */
-        justify-content: center;
-        display: flex;
-    }
-}
-
-/* =========================================
-   EXECUTIVE SNAPSHOT SECTION
-   ========================================= */
-
-.executive-snapshot {
-    padding: 80px 20px; /* 上下留出足够的呼吸空间 */
-    background-color: #fff; /* 保持背景纯白，突出卡片的轮廓 */
-}
-
-/* 标题样式：极简、居中 */
-.snapshot-title {
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    color: #111827;
-    margin-bottom: 80px;
-    font-weight: 600;
-    letter-spacing: -0.5px;
-}
-
-/* 布局网格：电脑上三列，手机上一列 */
-.snapshot-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 强制三等分 */
-    gap: 30px; /* 卡片之间的间距 */
-    max-width: 1100px; /* 限制最大宽度，防止读起来太累 */
-    margin: 0 auto;
-}
-
-/* 卡片样式：Off-white, Subtle Border, No Shadow */
-.snapshot-card {
-    background-color: #f9fafb; /* 极淡的灰白色 (Off-white) */
-    border: 1px solid #e5e7eb; /* 极细的灰色边框 */
-    border-radius: 12px;       /* 柔和的圆角 */
-    padding: 35px 30px;        /* 充足的内边距 */
-    transition: all 0.3s ease;
-}
-
-/* 鼠标悬停时稍微加深一点边框 (可选的微交互) */
-.snapshot-card:hover {
-    border-color: #d1d5db;
-}
-
-/* 卡片标题 */
-.snapshot-card h3 {
-    font-family: 'Inter', sans-serif; /* 使用无衬线字体显得更现代 */
-    font-size: 1.1rem;
-    font-weight: 600; /* Semibold */
-    color: #111827;   /* 深黑色 */
-    margin-bottom: 15px;
-    letter-spacing: -0.01em;
-}
-
-/* 卡片正文 */
-.snapshot-card p {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
-    line-height: 1.6; /* 增加行高，提升阅读体验 */
-    color: #4b5563;   /* 中灰色 */
-    margin: 0;
-}
-
-/* 底部微型文字 (Micro-line) */
-.snapshot-footer {
-    text-align: center;
-    margin-top: 50px;
-    font-size: 0.85rem;
-    color: #9ca3af; /* 浅灰色 (Muted) */
-    font-weight: 500;
-    letter-spacing: 0.02em;
-}
-
-/* 📱 手机端适配 */
-@media (max-width: 768px) {
-    .snapshot-grid {
-        grid-template-columns: 1fr; /* 手机上变为单列堆叠 */
-        gap: 20px;
-    }
-    
-    .executive-snapshot {
-        padding: 60px 20px;
-    }
-}
-
-/* =========================================
-   VENTURE SUMMARY (Compact & Dynamic)
-   ========================================= */
-
-.venture-summary {
-    /* Dynamic Height: Tries to center itself in the viewport */
-    min-height: 90vh;          
-    display: flex;
-    align-items: center;       /* Centers the card vertically */
-    padding: 40px 20px;        /* Reduced outer padding */
-    background-color: #f3f4f6;
-}
-
-.venture-card {
-    max-width: 900px;
-    width: 100%;
-    margin: 0 auto;
-    background: #ffffff;
-    
-    /* 1. Tighter Internal Padding */
-    padding: 40px 50px;        /* Reduced from 60px */
-    
-    border-radius: 20px;
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    position: relative;
-    overflow: hidden;
-}
-
-/* Gradient Strip at top */
-.venture-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;               /* Thinner line */
-    background: linear-gradient(90deg, #2563eb, #60a5fa);
-}
-
-.award-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;       /* Reduced from 30px */
-}
-
-.award-pill {
-    background: #eff6ff;
-    color: #2563eb;
-    font-size: 0.7rem;         /* Slightly smaller */
-    font-weight: 700;
-    text-transform: uppercase;
-    padding: 5px 10px;
-    border-radius: 50px;
-    border: 1px solid #dbeafe;
-}
-
-.section-title {
-    font-family: 'Playfair Display', serif;
-    /* Dynamic Font Size: Scales between 1.8rem and 2.4rem based on screen width */
-    font-size: clamp(1.8rem, 2.5vw, 2.4rem); 
-    color: #111827;
-    margin-bottom: 20px;       /* Reduced from 30px */
-    line-height: 1.1;
-}
-
-.summary-body p {
-    font-size: 1rem;           /* Standard reading size */
-    line-height: 1.6;          /* Tighter line height (was 1.7) */
-    color: #4b5563;
-    margin-bottom: 15px;       /* Reduced gap between paragraphs */
-    max-width: 750px;
-}
-
-.lead-text {
-    color: #111827 !important;
-    font-weight: 500;
-}
-
-/* 2. Compact Feature List */
-.feature-grid {
-    margin: 25px 0;            /* Reduced from 40px */
-    display: flex;
-    flex-direction: column;
-    gap: 10px;                 /* Reduced gap between items */
-}
-
-.feature-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: #f9fafb;
-    padding: 10px 18px;        /* Slimmer boxes */
-    border-radius: 10px;
-    border: 1px solid #f3f4f6;
-    transition: all 0.2s;
-}
-
-.feature-item:hover {
-    border-color: #e5e7eb;
-    background: #fff;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-}
-
-.check-icon {
-    width: 20px;               /* Smaller icon */
-    height: 20px;
-    background: #dbeafe;
-    color: #2563eb;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.7rem;
-    flex-shrink: 0;
-}
-
-.feature-item span {
-    font-weight: 500;
-    color: #374151;
-    font-size: 0.95rem;
-}
-
-/* Status Line Styling */
-.venture-status {
-    font-size: 0.85rem;      /* Small text */
-    color: #6b7280;          /* Muted gray */
-    margin-top: -10px;       /* Pull it up slightly closer to the list */
-    margin-bottom: 20px;
-    font-family: 'Inter', sans-serif;
-}
-
-.status-label {
-    font-weight: 700;
-    color: #374151;          /* Darker gray for the label part */
-    text-transform: uppercase;
-    font-size: 0.7rem;       /* Even smaller for the label */
-    letter-spacing: 0.5px;
-    margin-right: 6px;
-}
-.divider {
-    border: 0;
-    height: 1px;
-    background: #e5e7eb;
-    margin: 25px 0;            /* Reduced from 40px */
-}
-
-/* Actions */
-.summary-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.platform-group {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.link-brand {
-    color: #2563eb;
-    font-weight: 700;
-    text-decoration: none;
-    font-size: 1rem;
-}
-
-.btn-strategy {
-    padding: 10px 24px;        /* Slightly smaller button */
-    background-color: #111827;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 500;
-    font-size: 0.9rem;
-    transition: all 0.2s;
-}
-
-.btn-strategy:hover {
-    background-color: #374151;
-    transform: translateY(-1px);
-}
-
-.summary-footer {
-    margin-top: 20px;
-    font-size: 0.8rem;
-    color: #9ca3af;
-    text-align: center;
-}
-
-/* =========================================
-   THE MAGIC FIX: "Laptop Mode"
-   If the screen height is less than 800px, compress everything.
-   ========================================= */
-@media (max-height: 800px) {
-    .venture-summary {
-        padding: 20px 10px; /* Minimal outer padding */
-    }
-    .venture-card {
-        padding: 25px 35px; /* Compact card */
-    }
-    .section-title {
-        font-size: 1.8rem;
-        margin-bottom: 12px;
-    }
-    .summary-body p {
-        font-size: 0.95rem;
-        margin-bottom: 10px;
-        line-height: 1.5;
-    }
-    .feature-grid, .divider {
-        margin: 15px 0;
-    }
-    .feature-item {
-        padding: 8px 15px;
-    }
-    .summary-footer {
-        display: none; /* Hide footer text on very small screens to save space */
-    }
-}
-
-/* Mobile Width Adjustment */
-@media (max-width: 768px) {
-    .venture-card {
-        padding: 30px 20px;
-    }
-    .summary-actions {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .btn-strategy {
-        width: 100%;
-        text-align: center;
-    }
-}
-
-/* =========================================
-   DARK MODE OVERRIDES
-   Paste this at the very bottom of style.css
-   ========================================= */
-
-body.dark-mode {
-    background-color: #111827; /* Dark Gray bg for the main page */
-    color: #f3f4f6;
-}
-
-/* --- HERO SECTION DARK MODE --- */
-body.dark-mode .hero-title,
-body.dark-mode .hero-subtitle, 
-body.dark-mode .section-title,
-body.dark-mode .snapshot-title {
-    color: #f9fafb; /* Bright white text */
-}
-
-body.dark-mode .lead-text {
-    color: #e5e7eb !important;
-}
-
-/* --- VENTURE SECTION DARK MODE --- */
-body.dark-mode .venture-summary {
-    background-color: #0b0f19; /* Almost black for section bg */
-    border-top: 1px solid #1f2937;
-}
-
-body.dark-mode .venture-card {
-    background-color: #1f2937; /* Dark Gray card */
-    border-color: #374151;
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6); /* Darker shadow */
-}
-
-/* Venture List Items */
-body.dark-mode .feature-item {
-    background-color: #111827; /* Darker than card */
-    border-color: #374151;
-}
-
-body.dark-mode .feature-item:hover {
-    background-color: #374151; /* Lighten on hover */
-    border-color: #6b7280;
-}
-
-body.dark-mode .feature-item span {
-    color: #e5e7eb;
-}
-
-/* Venture Icons & Pills */
-body.dark-mode .check-icon {
-    background-color: #1e3a8a; /* Dark Blue bg */
-    color: #93c5fd;            /* Light Blue check */
-}
-
-body.dark-mode .award-pill {
-    background-color: #1e3a8a;
-    border-color: #1e40af;
-    color: #bfdbfe;
-}
-
-body.dark-mode .award-text {
-    color: #9ca3af;
-}
-
-body.dark-mode .summary-body p {
-    color: #d1d5db;
-}
-
-/* Buttons in Dark Mode */
-body.dark-mode .btn-strategy {
-    background-color: #f3f4f6; /* White button */
-    color: #111827;            /* Black text */
-}
-
-body.dark-mode .btn-strategy:hover {
-    background-color: #d1d5db;
-}
-
-body.dark-mode .link-brand {
-    color: #60a5fa; /* Lighter blue link */
-}
-
-/* --- EXECUTIVE SNAPSHOT (If you have cards there) --- */
-/* Assuming you have cards with class .card or similar */
-body.dark-mode .card, 
-body.dark-mode .snapshot-card {
-    background-color: #1f2937;
-    border: 1px solid #374151;
-}
-
-body.dark-mode .card h3,
-body.dark-mode .card-title {
-    color: #fff;
-}
-
-body.dark-mode .card p,
-body.dark-mode .card li {
-    color: #d1d5db;
-}
-/* Add to your existing dark mode section */
-body.dark-mode .venture-status {
-    color: #9ca3af; /* Light gray text */
-}
-
-body.dark-mode .status-label {
-    color: #d1d5db; /* White-ish label */
-}
-
-/* =========================================
-   DARK MODE FIXES (Hero & Snapshot)
-   Paste this at the VERY BOTTOM of style.css
-   ========================================= */
-
-/* 1. Force ALL Sections to lose their white background in dark mode */
+/* Dark Mode - Sections */
 body.dark-mode section,
 body.dark-mode .hero-section,
 body.dark-mode .executive-snapshot,
-body.dark-mode .main-container {
-    background-color: #111827 !important; /* Dark Background */
-    color: #f3f4f6;
-}
+body.dark-mode .main-container { background-color: #111827 !important; color: #f3f4f6; }
 
-/* 2. Fix the Hero Text */
+/* Dark Mode - Text & Titles */
 body.dark-mode .hero-title, 
 body.dark-mode .hero-subtitle, 
 body.dark-mode .hero-description,
-body.dark-mode h1 {
-    color: #ffffff !important; /* Pure White Title */
-}
-
-/* 3. Fix the "Executive Snapshot" Cards (The Black Out Fix) */
-body.dark-mode .snapshot-card,
-body.dark-mode .card {
-    background-color: #1f2937 !important; /* Dark Grey Card */
-    border: 1px solid #374151;             /* Subtle Border */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3); /* Darker Shadow */
-}
-
-/* FORCE text inside cards to be White */
-body.dark-mode .snapshot-card h3,
-body.dark-mode .snapshot-card h4,
-body.dark-mode .snapshot-card p,
-body.dark-mode .snapshot-card li,
-body.dark-mode .card h3,
-body.dark-mode .card p {
-    color: #e5e7eb !important; /* Light Grey Text */
-}
-
-/* 4. Fix Section Titles (like "Executive Snapshot") */
+body.dark-mode h1,
 body.dark-mode .section-title,
-body.dark-mode h2 {
-    color: #f9fafb !important;
-}
+body.dark-mode .snapshot-title,
+body.dark-mode h2 { color: #ffffff !important; }
 
-/* 5. Fix the "Trusted by..." footer text below the cards */
+/* Dark Mode - Applied Projects Cards */
+body.dark-mode .applied_projects-card { background-color: #1e1e1e; box-shadow: 0 5px 15px rgba(0,0,0,0.5); border-color: #333; }
+body.dark-mode .applied_projects-card h4 { color: #ffffff; }
+body.dark-mode .applied_projects-card .subtitle { color: #a0a0a0; }
+body.dark-mode .applied_projects-card .details { color: #cccccc; }
+
+/* Dark Mode - Snapshot & Generic Cards */
+body.dark-mode .snapshot-card,
+body.dark-mode .card { background-color: #1f2937 !important; border: 1px solid #374151; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+body.dark-mode .snapshot-card h3, body.dark-mode .snapshot-card h4, body.dark-mode .snapshot-card p, body.dark-mode .snapshot-card li,
+body.dark-mode .card h3, body.dark-mode .card p { color: #e5e7eb !important; }
+
+/* Dark Mode - Focus/Venture */
+body.dark-mode .focus-card { background-color: #1e1e1e !important; border: 1px solid #333; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+body.dark-mode .focus-card h4, body.dark-mode .focus-card p, body.dark-mode .focus-card li { color: #e0e0e0 !important; }
+body.dark-mode .focus-card strong { color: #ffffff !important; }
+body.dark-mode .project-tag-large { border: 1px solid #64ffda; }
+body.dark-mode .venture-summary { background-color: #0b0f19; border-top: 1px solid #1f2937; }
+body.dark-mode .venture-card { background-color: #1f2937; border-color: #374151; box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6); }
+body.dark-mode .feature-item { background-color: #111827; border-color: #374151; }
+body.dark-mode .feature-item:hover { background-color: #374151; border-color: #6b7280; }
+body.dark-mode .feature-item span { color: #e5e7eb; }
+body.dark-mode .check-icon { background-color: #1e3a8a; color: #93c5fd; }
+body.dark-mode .award-pill { background-color: #1e3a8a; border-color: #1e40af; color: #bfdbfe; }
+body.dark-mode .summary-body p { color: #d1d5db; }
+body.dark-mode .btn-strategy { background-color: #f3f4f6; color: #111827; }
+body.dark-mode .btn-strategy:hover { background-color: #d1d5db; }
+body.dark-mode .venture-status { color: #9ca3af; }
+body.dark-mode .status-label { color: #d1d5db; }
+
+/* Dark Mode - Footer & Trust Text */
 body.dark-mode .trust-text,
-body.dark-mode .snapshot-footer {
-    color: #9ca3af !important; /* Muted Grey */
-}
+body.dark-mode .snapshot-footer { color: #9ca3af !important; }
