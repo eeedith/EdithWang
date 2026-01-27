@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!chatBody) return;
 
   // 1) Greeting (single source of truth)
-  addBot("Hi, I’m Edith’s AI concierge. What can I help you find?");
+  addBot("Hi, I’m Edith’s AI concierge. You can ask about experience, applied projects, or the AI venture.");
 
   // 2) Toggle (single class name)
   window.toggleChat = () => {
