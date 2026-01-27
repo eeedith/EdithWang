@@ -903,6 +903,23 @@ body.dark-mode #userInput { background: #2d2d2d; color: white; border-color: #44
     font-size: 0.95rem;
 }
 
+/* Status Line Styling */
+.venture-status {
+    font-size: 0.85rem;      /* Small text */
+    color: #6b7280;          /* Muted gray */
+    margin-top: -10px;       /* Pull it up slightly closer to the list */
+    margin-bottom: 20px;
+    font-family: 'Inter', sans-serif;
+}
+
+.status-label {
+    font-weight: 700;
+    color: #374151;          /* Darker gray for the label part */
+    text-transform: uppercase;
+    font-size: 0.7rem;       /* Even smaller for the label */
+    letter-spacing: 0.5px;
+    margin-right: 6px;
+}
 .divider {
     border: 0;
     height: 1px;
@@ -1100,4 +1117,12 @@ body.dark-mode .card-title {
 body.dark-mode .card p,
 body.dark-mode .card li {
     color: #d1d5db;
+}
+/* Add to your existing dark mode section */
+body.dark-mode .venture-status {
+    color: #9ca3af; /* Light gray text */
+}
+
+body.dark-mode .status-label {
+    color: #d1d5db; /* White-ish label */
 }
