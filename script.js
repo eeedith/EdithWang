@@ -1,150 +1,165 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const chatWindow = document.getElementById("chatWindow");
-  const chatBody = document.getElementById("chatBody");
-  const quickReplies = document.getElementById("quickReplies");
-  const inputField = document.getElementById("userInput");
+/* =========================================
+   1. REVEAL ANIMATION (Makes site visible)
+   ========================================= */
+window.addEventListener('scroll', reveal);
 
-  // Prevent errors if elements are missing
-  if (!chatBody) return;
-
-  // 1) Toggle Chat Function
-  // We attach this to 'window' so the onclick in your HTML still works
-  window.toggleChat = () => {
-    // NOTE: Ensure your CSS uses '.open' for the visible state. 
-    // If your CSS uses '.active', change "open" to "active" below.
-    chatWindow?.classList.toggle("open");
-
-    // Greeting Logic: If chat is empty when opened, say Hello
-    if (chatBody && chatBody.childElementCount === 0) {
-      addBot("Hi, I’m Edith’s AI concierge. You can ask about experience, applied projects, or the AI venture.");
+function reveal() {
+    var reveals = document.querySelectorAll('.reveal');
+    for (var i = 0; i < reveals.length; i++) {
+        var windowheight = window.innerHeight;
+        var revealtop = reveals[i].getBoundingClientRect().top;
+        var revealpoint = 150;
+        if (revealtop < windowheight - revealpoint) {
+            reveals[i].classList.add('active');
+        }
     }
-  };
+}
 
-  // 2) Quick Replies Click Listener
-  if (quickReplies) {
-    quickReplies.addEventListener("click", (e) => {
-      const btn = e.target.closest("button[data-topic]");
-      if (!btn) return;
-      const topic = btn.dataset.topic;
-      handleTopic(topic);
-    });
-  }
+// Trigger once on load so the banner appears immediately
+reveal();
 
-  // 3) Handle "Enter" key
-  window.checkEnter = (event) => {
+
+/* =========================================
+   2. DARK MODE TOGGLE
+   ========================================= */
+function toggleTheme() {
+    const body = document.body;
+    const icon = document.querySelector('#theme-toggle i');
+    
+    body.classList.toggle('dark-mode');
+    
+    if (body.classList.contains('dark-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        icon.style.color = "#ffa500"; 
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        icon.style.color = ""; 
+    }
+}
+
+
+/* =========================================
+   3. CHATBOT LOGIC
+   ========================================= */
+
+// Define these functions globally so HTML onclick="" works
+function toggleChat() {
+    const chatWindow = document.getElementById('chatWindow');
+    const chatBody = document.getElementById('chatBody');
+
+    // NOTE: Your CSS likely uses 'active' to show the window
+    chatWindow.classList.toggle('active');
+
+    // Greeting: If opening AND chat is empty, say hello
+    if (chatWindow.classList.contains('active') && chatBody.innerHTML.trim() === "") {
+        addBot("Hi, I’m Edith’s AI concierge. You can ask about experience, applied projects, or the AI venture.");
+    }
+}
+
+function checkEnter(event) {
     if (event.key === "Enter") sendUserMessage();
-  };
+}
 
-  // 4) Send Message Logic
-  window.sendUserMessage = () => {
-    const text = (inputField?.value || "").trim();
+function handleInput(text) {
+    const input = document.getElementById('userInput');
+    if(input) {
+        input.value = text;
+        sendUserMessage();
+    }
+}
+
+function sendUserMessage() {
+    const inputField = document.getElementById('userInput');
+    const text = inputField.value.trim();
     if (!text) return;
-    
+
     addUser(text);
-    inputField.value = "";
+    inputField.value = ""; 
 
-    const reply = getResponse(text);
-    setTimeout(() => addBot(reply), 400); // Slight delay for realism
-  };
+    setTimeout(() => {
+        const reply = getResponse(text);
+        addBot(reply);
+    }, 600);
+}
 
-  function handleTopic(topic) {
-    const topicMap = {
-      experience: "Tell me about Edith’s experience.",
-      projects: "What projects is she working on?",
-      skills: "What are her tech skills?",
-      venture: "Tell me about her AI venture.",
-      joke: "Tell me a joke.",
-      contact: "How can I contact her?"
-    };
-    const userText = topicMap[topic] || "Tell me more.";
-    
-    addUser(userText);
-    const reply = getResponse(userText);
-    setTimeout(() => addBot(reply), 350);
-  }
+// --- Helper Functions ---
 
-  // --- Render Functions ---
-  function addUser(text) {
-    const div = document.createElement("div");
+function addUser(text) {
+    const chatBody = document.getElementById('chatBody');
+    const div = document.createElement('div');
     div.className = "message user-message";
-    div.textContent = text; 
+    div.textContent = text;
     chatBody.appendChild(div);
     chatBody.scrollTop = chatBody.scrollHeight;
-  }
+}
 
-  function addBot(text) {
-    const div = document.createElement("div");
+function addBot(text) {
+    const chatBody = document.getElementById('chatBody');
+    const div = document.createElement('div');
     div.className = "message bot-message";
-    // Using innerHTML allows you to use <b> or links in your responses if you want
-    div.innerHTML = text; 
+    div.innerHTML = text; // innerHTML allows bolding <b>
     chatBody.appendChild(div);
     chatBody.scrollTop = chatBody.scrollHeight;
-  }
+}
 
-  // --- The Brain (Response Logic) ---
-  function getResponse(input) {
+// --- Quick Replies Listener ---
+// We wait for DOM to load to attach this event listener
+document.addEventListener("DOMContentLoaded", () => {
+    const quickReplies = document.getElementById("quickReplies");
+    if (quickReplies) {
+        quickReplies.addEventListener("click", (e) => {
+            const btn = e.target.closest("button");
+            if (!btn) return;
+            
+            const topic = btn.getAttribute("data-topic");
+            const topicMap = {
+                'experience': "Tell me about your experience.",
+                'projects': "What projects have you worked on?",
+                'skills': "What are your technical skills?",
+                'venture': "Tell me about your AI venture.",
+                'contact': "How can I contact you?"
+            };
+            const text = topicMap[topic] || btn.innerText;
+            handleInput(text);
+        });
+    }
+});
+
+// --- The Brain (Response Logic) ---
+function getResponse(input) {
     const text = input.toLowerCase();
 
-    // Venture
-    if (hasAny(text, ["asktaxly", "tax", "venture", "ai platform"])) {
-      return "Edith is building an applied AI platform focused on reducing complexity in cross-border tax compliance. You can view it at <a href='https://asktaxly.com' target='_blank'>asktaxly.com</a>.";
+    // Hidden/Specific Logic
+    if (text.includes('mayo') || text.includes('hospital') || text.includes('tote')) {
+        return "At <b>Mayo Clinic</b>, I led a root cause analysis on a 40-50% tote underutilization issue. I optimized workflows to reduce transportation waste."; 
+    }
+    if (text.includes('ecolab') || text.includes('margin') || text.includes('flat fee')) {
+        return "At <b>Ecolab</b>, I evaluated 'Flat Fee' billing arrangements. My models identified margin growth opportunities and improved cash collection.";
+    }
+    if (text.includes('tax') || text.includes('venture') || text.includes('ai agent')) {
+        return "I am the founder of <b>AskTaxly AI</b>. We use Python & LLMs to automate complex cross-border tax compliance.";
     }
 
-    // Projects
-    if (hasAny(text, ["project", "projects", "mayo", "ecolab", "mss", "work"])) {
-      return "Edith works on applied initiatives across healthcare operations and finance transformation. You can ask specifically about <b>Mayo Clinic</b>, <b>Ecolab</b>, or <b>Risk Governance</b>.";
+    // Core Logic
+    if (text.includes('experience') || text.includes('background') || text.includes('work')) {
+        return "I have 10+ years in Finance Transformation. I've led projects in Healthcare and Commercial sectors, and currently work in Governance at Citi.";
+    }
+    if (text.includes('skill') || text.includes('tech')) {
+        return "I bridge Finance and Tech. My toolkit includes <b>Python</b> (for automation), <b>Power BI</b>, and <b>Azure</b> cloud infrastructure.";
+    }
+    if (text.includes('joke') || text.includes('fun')) {
+        const jokes = [
+            "Why did the scarecrow win an award? Because he was outstanding in his field! 🌾",
+            "What do you call a fake noodle? An Impasta! 🍝",
+            "I told my computer I needed a break, and now it won't stop sending me Kit-Kats. 🍫"
+        ];
+        return jokes[Math.floor(Math.random() * jokes.length)];
+    }
+    if (text.includes('contact') || text.includes('email') || text.includes('chat')) {
+        return "You can find my LinkedIn at the top, or schedule a coffee chat via Calendly.";
     }
 
-    // Mayo
-    if (hasAny(text, ["mayo", "hospital", "tote", "logistics"])) {
-      return "At <b>Mayo Clinic</b>, Edith is working on a root cause analysis of inventory logistics to fix tote underutilization and improve distribution workflows.";
-    }
-
-    // Ecolab
-    if (hasAny(text, ["ecolab", "flat fee", "margin", "pricing"])) {
-      return "At <b>Ecolab</b>, Edith built models to improve margin visibility, identifying approximately $18M in potential margin improvement.";
-    }
-
-    // Risk
-    if (hasAny(text, ["risk", "security", "vulnerability", "controls", "governance"])) {
-      return "Edith designed a standardized risk assessment framework covering security and operational risk to support governance oversight.";
-    }
-
-    // Experience
-    if (hasAny(text, ["experience", "background", "citi", "portfolio"])) {
-      return "Edith has 10+ years in finance transformation. Most recently, she managed portfolio governance at <b>Citi</b>, overseeing a $65M+ technology portfolio.";
-    }
-
-    // Skills
-    if (hasAny(text, ["skills", "tech", "python", "sql", "power bi", "azure"])) {
-      return "She bridges finance and tech using Python, SQL, Power BI, and Azure. Her credentials include CPA and PMP.";
-    }
-
-    // Contact
-    if (hasAny(text, ["contact", "email", "linkedin", "calendly"])) {
-      return "You can connect with Edith on LinkedIn or use the Calendly link on this site.";
-    }
-
-    // Joke
-    if (hasAny(text, ["joke", "fun", "laugh"])) {
-      return randomJoke();
-    }
-
-    // Fallback
-    return "You can ask about experience, applied projects, the AI venture, tech skills, or how to connect.";
-  }
-
-  function hasAny(text, keywords) {
-    return keywords.some((k) => text.includes(k));
-  }
-
-  function randomJoke() {
-    const jokes = [
-      "Why did the scarecrow win an award? Because he was outstanding in his field.",
-      "What do you call a fake noodle? An impasta.",
-      "Why don’t skeletons fight each other? They don’t have the guts.",
-      "I told my computer I needed a break, and now it won’t stop sending me break reminders."
-    ];
-    return jokes[Math.floor(Math.random() * jokes.length)];
-  }
-});
+    return "That's interesting! You can ask me about my <b>Experience</b>, my <b>Tech Skills</b>, or I can tell you a <b>Joke</b>! 😄";
+}
