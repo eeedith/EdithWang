@@ -416,38 +416,48 @@
 </footer>
 
 <div class="floating-ai" onclick="toggleChat()">
-    <i class="fas fa-robot"></i>
-    <span class="tooltip">Ask Edith</span>
- </div>
-    
- <div class="chat-window" id="chatWindow">
-    <div class="chat-header">
-     <div class="chat-title"><i class="fas fa-robot"></i> Edith AI Concierge</div>
-     <button class="close-chat" onclick="toggleChat()">&times;</button>
-    </div>
-
-    <div class="quick-replies" id="quickReplies">
-      <button data-topic="experience">💼 Experience</button>
-      <button data-topic="projects">📌 Projects</button>
-      <button data-topic="skills">💻 Skills</button>
-      <button data-topic="venture">🚀 Venture</button>
-      <button data-topic="joke">😄 Joke</button>
-      <button data-topic="contact">✉️ Contact</button>
-    </div>
-
-    <div class="chat-input-area">
-        <div class="quick-replies" id="quickReplies">
-            <button onclick="handleInput('Experience')">💼 Experience</button>
-            <button onclick="handleInput('Skills')">💻 Skills</button>
-            <button onclick="handleInput('Tell me a joke')">😄 Joke</button>
-        </div>
-        
-        <div class="input-wrapper" style="display: flex; margin-top: 10px; gap: 5px;">
-            <input type="text" id="userInput" placeholder="Type a message..." onkeypress="checkEnter(event)" style="flex: 1; padding: 8px; border-radius: 20px; border: 1px solid #ccc;">
-            <button onclick="sendUserMessage()" style="background: none; border: none; color: #2563eb; cursor: pointer;"><i class="fas fa-paper-plane"></i></button>
-        </div>
-    </div>
+  <i class="fas fa-robot"></i>
+  <span class="tooltip">Ask Edith</span>
 </div>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-title"><i class="fas fa-robot"></i> Edith AI Concierge</div>
+    <button class="close-chat" onclick="toggleChat()">&times;</button>
+  </div>
+
+  <!-- ✅ ONE quick-replies block only -->
+  <div class="quick-replies" id="quickReplies">
+    <button data-topic="experience">💼 Experience</button>
+    <button data-topic="projects">📌 Projects</button>
+    <button data-topic="skills">💻 Skills</button>
+    <button data-topic="venture">🚀 Venture</button>
+    <button data-topic="contact">✉️ Contact</button>
+  </div>
+
+  <div class="chat-body" id="chatBody"></div>
+
+  <div class="chat-input-area">
+    <div class="input-wrapper" style="display:flex; margin-top:10px; gap:5px;">
+      <input
+        type="text"
+        id="userInput"
+        placeholder="Ask about experience, projects, or the AI venture…"
+        onkeypress="checkEnter(event)"
+        style="flex:1; padding:8px; border-radius:20px; border:1px solid #ccc;"
+      >
+      <button onclick="sendUserMessage()" style="background:none; border:none; color:#2563eb; cursor:pointer;">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+
+    <!-- ✅ Optional: keep Joke as a small secondary link -->
+    <div class="chat-footer-note" style="margin-top:8px; font-size:12px; opacity:0.8;">
+      <span style="cursor:pointer;" onclick="handleInput('joke')">Need a break? 😄</span>
+    </div>
+  </div>
+</div>
+
 
 <script>
     // --- 1. REVEAL ANIMATION (保留这个以防白屏) ---
