@@ -220,7 +220,15 @@ nav { background: rgba(255,255,255,0.95); position: sticky; top: 0; z-index: 100
 .tag-ent { background: #D1FAE5; color: #065F46; }
 .tag-vol { background: #EDE9FE; color: #5B21B6; }
 .tag-strategy { background: #e0e7ff; color: #92400E; }
-.tag-corp { background: #f1f5f9; color: #475569; }
+/* --- NEW Controllership Tags (Professional Slate) --- */
+.tag-corp { 
+    background: #f1f5f9;       /* Soft Slate (Grey-Blue) Background */
+    color: #475569;            /* Dark Slate Text */
+    border: 1px solid #cbd5e1; /* Subtle Grey-Blue Border */
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 50px;       /* Pill shape */
+}
 .timeline-content h4 { font-size: 1.1rem; margin-bottom: 5px; }
 .company { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px; font-style: italic; }
 
