@@ -586,31 +586,34 @@ body.dark-mode .insight-card p {
 }
 
 
-/* --- Navigation CTA Button (Smaller & Shifted Right) --- */
+/* --- Navigation CTA Button (Micro Size & Far Right) --- */
 .nav-cta-btn {
     background-color: #2563eb;    /* Royal Blue */
     color: #ffffff !important;    /* Force text white */
     
-    /* SIZE ADJUSTMENTS */
-    padding: 6px 18px;            /* Smaller pill (was 8px 24px) */
-    font-size: 0.85rem;           /* Slightly more compact text */
+    /* SIZE: Much smaller */
+    padding: 5px 15px;            /* Very compact padding */
+    font-size: 0.75rem;           /* Small, elegant text (approx 12px) */
     border-radius: 50px;
     
-    /* POSITIONING ADJUSTMENTS */
-    margin-left: 35px;            /* Pushes it further right (away from Insights) */
-    margin-right: 10px;           /* Sits closer to the Dark Mode moon */
+    /* POSITION: Push firmly to the right */
+    margin-left: 60px;            /* Huge gap from "Insights" link */
+    margin-right: 8px;            /* Sits tight against the Dark Mode moon */
     
+    /* Alignment Fixes */
+    vertical-align: middle;       /* Ensures it lines up with text */
+    display: inline-block;        /* Ensures size applies correctly */
     font-weight: 600;
     text-decoration: none;
+    line-height: 1;               /* Prevents it from being too tall */
     transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
     border: 1px solid transparent;
 }
 
 /* Hover Effect */
 .nav-cta-btn:hover {
     background-color: #1d4ed8;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
     color: #ffffff;
 }
