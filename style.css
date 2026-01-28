@@ -586,23 +586,25 @@ body.dark-mode .insight-card p {
 }
 
 
-/* --- Navigation CTA Button (Petite & Forced Right) --- */
+/* --- Navigation CTA Button (Slimmer Width & Far Right) --- */
 .nav-cta-btn {
     background-color: #2563eb;    /* Royal Blue */
-    color: #ffffff !important;
+    color: #ffffff !important;    /* Force text white */
     
-    /* SIZE: Petite */
-    padding: 4px 16px;            /* Very slim top/bottom */
-    font-size: 0.75rem;           /* Small, elegant text */
+    /* SIZE: Tighter padding makes it less wide */
+    padding: 6px 14px;            /* 14px left/right = much slimmer width */
+    font-size: 0.75rem;           /* Petite text size */
     border-radius: 50px;
     
-    /* POSITIONING: The "Force Right" Trick */
-    margin-left: 50px!important; /* Shoves button to the far right */
-    margin-right: 5px !important; /* Gap between button and Moon icon */
+    /* POSITIONING: Keeps it forced to the right */
+    margin-left: auto !important; 
+    margin-right: 15px !important;
     
-    /* Structure */
-    display: inline-flex;         /* Ensures padding works perfectly */
-    align-items: center;
+    /* STRUCTURE: Ensures it doesn't stretch */
+    display: inline-block;
+    width: fit-content;           /* Forces button to only be as wide as the text */
+    white-space: nowrap;          /* Prevents text from breaking */
+    
     font-weight: 600;
     text-decoration: none;
     line-height: 1;
