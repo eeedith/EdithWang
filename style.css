@@ -597,7 +597,7 @@ body.dark-mode .insight-card p {
     border-radius: 50px;
     
     /* POSITIONING: Keeps it forced to the right */
-    margin-left: auto !important; 
+    margin-left: 60px !important; 
     margin-right: 15px !important;
     
     /* STRUCTURE: Ensures it doesn't stretch */
